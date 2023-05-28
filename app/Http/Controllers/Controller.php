@@ -15,17 +15,17 @@ class Controller extends BaseController
     
     public function submit(Request $request)
     {
-        $portfo = new portfolios;
-        $portfo->name = $request->input('name');
-        $portfo->email = $request->input('email');
-        $portfo->message = $request->input('message');
-        $portfo->save();
+        // $portfo = new portfolios;
+        // $portfo->name = $request->input('name');
+        // $portfo->email = $request->input('email');
+        // $portfo->message = $request->input('message');
+        // $portfo->save();
         $details = [
-            'title' => $portfo->name,
+            'title' => $request->input('name'),
             'body' => 'This is for testing email using smtp'
         ];
        
-        \Mail::to($portfo->email)->send(new \App\Mail\MyTestMail($details));
+        \Mail::to($request->input('email'))->send(new \App\Mail\MyTestMail($details));
        
         
         // Process the submitted data, such as saving to the database or performing other actions
